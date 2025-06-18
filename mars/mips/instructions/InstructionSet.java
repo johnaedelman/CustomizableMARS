@@ -6,6 +6,8 @@
    import mars.util.*;
    import java.util.*;
    import java.io.*;
+   import java.lang.Math;
+   import mars.mips.instructions.CustomInstructions;
 	
 	/*
 Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
@@ -77,7 +79,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         /* Here is where the parade begins.  Every instruction is added to the set here.*/
       
         // ////////////////////////////////////   BASIC INSTRUCTIONS START HERE ////////////////////////////////
-      
+         
+        // 2025 RESEARCH INSTRUCTIONS START HERE
+         CustomInstructions.addCustomInstructions(instructionList);
+        // 2025 RESEARCH INSTRUCTIONS END HERE
+
          instructionList.add(
                 new BasicInstruction("nop",
             	 "Null operation : machine code is all zeroes",
