@@ -7,7 +7,7 @@
    import java.util.*;
    import java.io.*;
    import java.lang.Math;
-   import mars.mips.instructions.CustomInstructions;
+   import mars.mips.instructions.LanguageLoader;
 	
 	/*
 Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
@@ -74,15 +74,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      * @see BasicInstruction
      * @see ExtendedInstruction
      */
-       public void populate()
-      {
-        /* Here is where the parade begins.  Every instruction is added to the set here.*/
+       public void populate(){
+      // 2025 RESEARCH INSTRUCTIONS START HERE
+      LanguageLoader.populate(instructionList);
+      // 2025 RESEARCH INSTRUCTIONS END HERE
+      /* Here is where the parade begins.  Every instruction is added to the set here.*/
       
         // ////////////////////////////////////   BASIC INSTRUCTIONS START HERE ////////////////////////////////
-         
-        // 2025 RESEARCH INSTRUCTIONS START HERE
-         CustomInstructions.addCustomInstructions(instructionList);
-        // 2025 RESEARCH INSTRUCTIONS END HERE
 
          instructionList.add(
                 new BasicInstruction("nop",

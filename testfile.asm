@@ -1,6 +1,7 @@
 li $t0, 3
 LOOP:
-noise
+dog
+cat
 move $t1, $v0
 
 li $v0, 1
