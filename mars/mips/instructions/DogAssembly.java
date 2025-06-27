@@ -15,7 +15,7 @@ public class DogAssembly extends CustomAssembly{
     public String getName(){
         return "Dog Assembly";
     }
-    
+
     @Override
     public String getDescription(){
         return "Assembly for dogs.";
@@ -67,7 +67,7 @@ public class DogAssembly extends CustomAssembly{
                         SystemIO.printString("Ruff!\n");
                         break;
                         default:
-                        SystemIO.printString("Howl!\n");
+                        SystemIO.printString(getName() + ": " + getDescription() + enabled + "\n");
                     }
                 }
             }));

@@ -8,6 +8,9 @@
    import java.io.*;
    import java.net.*;
 
+import mars.mips.instructions.CustomAssembly;
+import mars.mips.instructions.LanguageLoader;
+
 /*
 Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
 
@@ -68,7 +71,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       Editor editor;
    	
    	// components of the menubar
-      private JMenu file, run, window, help, edit, settings;
+      private JMenu file, run, window, help, edit, settings, instructionSet;
       private JMenuItem fileNew, fileOpen, fileClose, fileCloseAll, fileSave, fileSaveAs, fileSaveAll, fileDumpMemory, filePrint, fileExit;
       private JMenuItem editUndo, editRedo, editCut, editCopy, editPaste, editFindReplace, editSelectAll;
       private JMenuItem runGo, runStep, runBackstep, runReset, runAssemble, runStop, runPause, runClearBreakpoints, runToggleBreakpoints;
@@ -477,6 +480,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          //window.setMnemonic(KeyEvent.VK_W);
          settings = new JMenu("Settings");
          settings.setMnemonic(KeyEvent.VK_S);
+         instructionSet = new JMenu("Instruction Set");
+         instructionSet.setMnemonic(KeyEvent.VK_I);
          help = new JMenu("Help");
          help.setMnemonic(KeyEvent.VK_H); 
       	// slight bug: user typing alt-H activates help menu item directly, not help menu
@@ -631,6 +636,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          help.add(helpHelp);
          help.addSeparator();
          help.add(helpAbout);
+
+         for (CustomAssembly c : LanguageLoader.assemblyList){
+            JCheckBoxMenuItem assemblyAction = new JCheckBoxMenuItem(new InstructionSetAction(c.getName(),
+                                            null,
+               									  c.getDescription(),
+               									  null,null,
+               									  mainUI, c));
+            assemblyAction.setSelected(c.enabled);
+            instructionSet.add(assemblyAction);
+         }
       
          menuBar.add(file);
          menuBar.add(edit);
@@ -639,6 +654,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          JMenu toolMenu = new ToolLoader().buildToolsMenu();
          if (toolMenu != null) menuBar.add(toolMenu);
          menuBar.add(help);
+         menuBar.add(instructionSet);
       	
       	// experiment with popup menu for settings. 3 Aug 2006 PS
          //setupPopupMenu();

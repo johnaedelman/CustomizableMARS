@@ -8,7 +8,13 @@
    import java.io.*;
    import java.lang.Math;
    import mars.mips.instructions.LanguageLoader;
-	
+	import mars.venus.VenusUI;
+
+   import java.awt.*;
+import java.awt.event.*;
+
+import javax.security.auth.callback.LanguageCallback;
+import javax.swing.*;
 	/*
 Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
 
@@ -67,6 +73,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          return instructionList;
       
       }
+      /* // Used for debug output
+      private boolean windowInit = false; 
+      private JFrame frame;
+      */
     /**
      * Adds all instructions to the set.  A given extended instruction may have
      * more than one Instruction object, depending on how many formats it can have.
@@ -75,9 +85,30 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      * @see ExtendedInstruction
      */
        public void populate(){
+         /* // More debug output
+         if (!windowInit){
+            frame = new JFrame("Debug");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+            windowInit = true;
+         }
+      frame.getContentPane().removeAll();
+      frame.pack();
+      */
+
+      // String before = Integer.toString(instructionList.size());
+      instructionList.clear();
+      /* // Yet more debug
+      JLabel debugLabel = new JLabel();
+      debugLabel.setPreferredSize(new Dimension(175, 100));
+      debugLabel.setText("Before: " + before + " | " + "After: " + Integer.toString(instructionList.size()) + " | " + Integer.toString(LanguageLoader.assemblyList.size()));
+      frame.getContentPane().add(debugLabel, BorderLayout.SOUTH);
+      frame.pack();
+      */
       // 2025 RESEARCH INSTRUCTIONS START HERE
-      LanguageLoader.populate(instructionList);
+      LanguageLoader.mergeCustomInstructions(instructionList);
       // 2025 RESEARCH INSTRUCTIONS END HERE
+      
       /* Here is where the parade begins.  Every instruction is added to the set here.*/
       
         // ////////////////////////////////////   BASIC INSTRUCTIONS START HERE ////////////////////////////////
