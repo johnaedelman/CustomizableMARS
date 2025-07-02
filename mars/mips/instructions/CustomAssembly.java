@@ -25,7 +25,7 @@ public abstract class CustomAssembly{
     */
    public abstract String getDescription();
 
-   public boolean enabled = true;
+   public boolean enabled = false;
    protected ArrayList<BasicInstruction> instructionList = new ArrayList<BasicInstruction>();
    
    /**
