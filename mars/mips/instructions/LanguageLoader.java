@@ -6,8 +6,9 @@
     import mars.util.*;
     import java.util.*;
     import java.io.*;
-    import mars.mips.instructions.DogAssembly;
-    import mars.mips.instructions.CatAssembly;
+    import mars.mips.instructions.customlangs.DogAssembly;
+    import mars.mips.instructions.customlangs.CatAssembly;
+    import mars.mips.instructions.MipsAssembly;
 
 /**
  * Handles all user-defined instruction sets. Add CustomAssembly objects to the assemblyList and they will become accessible in the Instruction Sets dropdown.
@@ -17,6 +18,7 @@
 public class LanguageLoader{
     private static ArrayList finalInstructionList = new ArrayList<BasicInstruction>();
     public static ArrayList<CustomAssembly> assemblyList = new ArrayList<CustomAssembly>(){{
+        add(new MipsAssembly());
         // Add your instruction sets here
         add(new DogAssembly());
         add(new CatAssembly());
@@ -26,14 +28,21 @@ public class LanguageLoader{
     * Merges all enabled custom instruction sets into the main instruction set that the simulator reads from.
     * @param instrList The global instruction list.
     */
-    public static void mergeCustomInstructions(ArrayList<BasicInstruction> instrList){
+    public static void mergeCustomInstructions(ArrayList instrList){
+        boolean pseudo = false;
         finalInstructionList.clear();
         for (CustomAssembly c : assemblyList){
             if (c.enabled){
                 c.addCustomInstructions(finalInstructionList);
+                if (c instanceof MipsAssembly){
+                    pseudo = true;
+                }
             }
         }
 
         instrList.addAll(finalInstructionList);
+        if (pseudo == true){
+            Globals.instructionSet.addPseudoInstructions();
+        }
     }
 }

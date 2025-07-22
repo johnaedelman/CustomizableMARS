@@ -1,10 +1,10 @@
 li $t0, 3
 LOOP:
-dog
+
 move $t1, $v0
 
 li $v0, 1
-pow $a0, $t0, $t1
+move $a0, $t1
 syscall
 li $a0, 10
 li $v0, 11

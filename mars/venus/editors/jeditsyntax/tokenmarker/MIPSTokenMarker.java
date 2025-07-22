@@ -474,33 +474,30 @@
    
        public static KeywordMap getKeywords()
       {
-         if(cKeywords == null)
-         {
-            cKeywords = new KeywordMap(false);
-         	// add Instruction mnemonics
-            java.util.ArrayList instructionSet = mars.Globals.instructionSet.getInstructionList();
-            for (int i=0; i< instructionSet.size(); i++) {
-               cKeywords.add( ((mars.mips.instructions.Instruction)instructionSet.get(i)).getName(), Token.KEYWORD1 );
-            }
-         	// add assembler directives
-            java.util.ArrayList directiveSet = mars.assembler.Directives.getDirectiveList();
-            for (int i=0; i< directiveSet.size(); i++) {
-               cKeywords.add( ((mars.assembler.Directives)directiveSet.get(i)).getName(), Token.KEYWORD2 );
-            }
-         	// add integer register file
-            mars.mips.hardware.Register[] registerFile = mars.mips.hardware.RegisterFile.getRegisters();
-            for (int i=0; i< registerFile.length; i++) {
-               cKeywords.add( registerFile[i].getName(), Token.KEYWORD3 );
-               cKeywords.add( "$"+i, Token.KEYWORD3 );  // also recognize $0, $1, $2, etc
-            }
-         	// add Coprocessor 1 (floating point) register file
-            mars.mips.hardware.Register[] coprocessor1RegisterFile = mars.mips.hardware.Coprocessor1.getRegisters();
-            for (int i=0; i< coprocessor1RegisterFile.length; i++) {
-               cKeywords.add( coprocessor1RegisterFile[i].getName(), Token.KEYWORD3 );
-            }     
-         	// Note: Coprocessor 0 registers referenced only by number: $8, $12, $13, $14. These are already in the map
-         
+         cKeywords = new KeywordMap(false);
+         // add Instruction mnemonics
+         java.util.ArrayList instructionSet = mars.Globals.instructionSet.getInstructionList();
+         for (int i=0; i< instructionSet.size(); i++) {
+            cKeywords.add( ((mars.mips.instructions.Instruction)instructionSet.get(i)).getName(), Token.KEYWORD1 );
          }
+         // add assembler directives
+         java.util.ArrayList directiveSet = mars.assembler.Directives.getDirectiveList();
+         for (int i=0; i< directiveSet.size(); i++) {
+            cKeywords.add( ((mars.assembler.Directives)directiveSet.get(i)).getName(), Token.KEYWORD2 );
+         }
+         // add integer register file
+         mars.mips.hardware.Register[] registerFile = mars.mips.hardware.RegisterFile.getRegisters();
+         for (int i=0; i< registerFile.length; i++) {
+            cKeywords.add( registerFile[i].getName(), Token.KEYWORD3 );
+            cKeywords.add( "$"+i, Token.KEYWORD3 );  // also recognize $0, $1, $2, etc
+         }
+         // add Coprocessor 1 (floating point) register file
+         mars.mips.hardware.Register[] coprocessor1RegisterFile = mars.mips.hardware.Coprocessor1.getRegisters();
+         for (int i=0; i< coprocessor1RegisterFile.length; i++) {
+            cKeywords.add( coprocessor1RegisterFile[i].getName(), Token.KEYWORD3 );
+         }     
+         // Note: Coprocessor 0 registers referenced only by number: $8, $12, $13, $14. These are already in the map
+      
          return cKeywords;
       }
    
