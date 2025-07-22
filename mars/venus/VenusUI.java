@@ -638,11 +638,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          help.add(helpAbout);
 
          for (CustomAssembly c : LanguageLoader.assemblyList){
-            JMenuItem assemblyAction = new JMenuItem(new InstructionSetAction(c.getName(),
+            JMenuItem assemblyAction = new JMenuItem(new LanguageAction(c.getName(),
                                             null,
                									  c.getDescription(),
                									  null,null,
-               									  mainUI, c, LanguageLoader.assemblyList, language));
+               									  mainUI, c, LanguageLoader.assemblyList, language, (EditTabbedPane) mainPane.getEditTabbedPane()));
             if (c.enabled){
                assemblyAction.setBackground(new Color(200, 221, 242));
             }
