@@ -1,0 +1,60 @@
+   package mars.tools;
+   import mars.*;
+   import mars.mips.hardware.*;
+import mars.tools.MarsTool;
+import mars.venus.*;
+   import java.awt.*;
+   import java.awt.event.*;
+   import javax.swing.*;
+   import java.util.*;
+   import mars.mips.instructions.*;
+   import mars.venus.*;
+
+public class LanguageSwitcher implements MarsTool{
+    public String getName(){
+        return "Language Switcher";
+    }
+    
+    public void action(){
+        final JFrame frame = new JFrame("Language Switcher");
+        JPanel panel = new JPanel(new BorderLayout());
+        JMenu menu = new JMenu();
+        JMenuBar test = new JMenuBar();
+        for (CustomAssembly c : LanguageLoader.assemblyList){
+            JMenuItem assemblyAction = new JMenuItem(new LanguageAction(c.getName(),
+                                            null,
+               									  c.getDescription(),
+               									  null,null,
+               									  Globals.getGui(), c, LanguageLoader.assemblyList, menu, (EditTabbedPane) Globals.getGui().getMainPane().getEditTabbedPane()));
+            if (c.enabled){
+               assemblyAction.setBackground(new Color(200, 221, 242));
+            }
+            menu.add(assemblyAction);
+         }
+        JPanel buttonPanel = new JPanel();
+        JButton clearButton = new JButton("Clear");
+        buttonPanel.add(clearButton);
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(
+                new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                    frame.setVisible(false);
+                    
+                    }
+                
+                });
+        buttonPanel.add(closeButton);
+        test.add(menu);
+        frame.setJMenuBar(test);
+        panel.add(panel, BorderLayout.SOUTH);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setTitle(" Language Switcher");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // changed 12/12/09 DPS (was EXIT)
+        frame.setSize(200, 100); // TBD  SIZE
+        frame.setVisible(true); // show();
+    }
+}
