@@ -6,9 +6,15 @@
     import mars.util.*;
     import java.util.*;
     import java.io.*;
-    import mars.mips.instructions.customlangs.DogAssembly;
-    import mars.mips.instructions.customlangs.CatAssembly;
+    import java.lang.reflect.Constructor;
     import mars.mips.instructions.MipsAssembly;
+    import mars.mips.instructions.CustomAssembly;
+    
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.*;
+
+
 
 /**
  * Handles all user-defined instruction sets. Add CustomAssembly objects to the assemblyList and they will become accessible in the Instruction Sets dropdown.
@@ -16,12 +22,38 @@
  * @see assemblyList
  */
 public class LanguageLoader{
+    private static final String CUSTOM_LANG_DIRECTORY = "mars/mips/instructions/customlangs";
+    private static final String CLASS_EXTENSION = "class";
+    private static final String CLASS_PREFIX = "mars.mips.instructions.customlangs.";
+
     private static ArrayList finalInstructionList = new ArrayList<BasicInstruction>();
     public static ArrayList<CustomAssembly> assemblyList = new ArrayList<CustomAssembly>(){{
-        add(new MipsAssembly());
-        // Add your instruction sets here
-        add(new DogAssembly());
-        add(new CatAssembly());
+        MipsAssembly m = new MipsAssembly();
+        add(m);
+        ArrayList<String> langCandidates = FilenameFinder.getFilenameList(m.getClass().getClassLoader(), CUSTOM_LANG_DIRECTORY, CLASS_EXTENSION);
+        
+        HashSet<String> languages = new HashSet();
+        for (String file : langCandidates){
+            // Ensure duplicates are not loaded
+            if (languages.contains(file)){
+                continue;
+            } else{
+                languages.add(file);
+            }
+            // Add an instance of the class to assemblyList if it extends CustomAssembly
+            try {
+                String className = CLASS_PREFIX + file.substring(0, file.indexOf(CLASS_EXTENSION) - 1);
+                Class langClass = Class.forName(className);
+                // Do nothing if the class doesn't implement CustomAssembly
+                if (!CustomAssembly.class.isAssignableFrom(langClass)){
+                    continue;
+                }
+                Constructor<CustomAssembly> c = langClass.getConstructor();
+                add(c.newInstance());
+            } catch(Exception e){
+                System.out.println("Error instantiating CustomAssembly from file " + file + ": "+e);
+            }
+        }
     }};
 
     /**

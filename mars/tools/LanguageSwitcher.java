@@ -16,16 +16,16 @@ public class LanguageSwitcher implements MarsTool{
     }
     
     public void action(){
-        final JFrame frame = new JFrame("Language Switcher");
-        JPanel panel = new JPanel(new BorderLayout());
-        JMenu menu = new JMenu();
+        JFrame frame = new JFrame("Language Switcher");
+        JPanel panel = new JPanel();
+        JMenu menu = new JMenu("Select Language");
         JMenuBar test = new JMenuBar();
         for (CustomAssembly c : LanguageLoader.assemblyList){
-            JMenuItem assemblyAction = new JMenuItem(new LanguageAction(c.getName(),
+              JMenuItem assemblyAction = new JMenuItem(new LanguageAction(c.getName(),
                                             null,
                									  c.getDescription(),
                									  null,null,
-               									  Globals.getGui(), c, LanguageLoader.assemblyList, menu, (EditTabbedPane) Globals.getGui().getMainPane().getEditTabbedPane()));
+               									  Globals.getGui(), c, LanguageLoader.assemblyList, menu, (EditTabbedPane) Globals.getGui().getMainPane().getEditTabbedPane(), frame));
             if (c.enabled){
                assemblyAction.setBackground(new Color(200, 221, 242));
             }
@@ -48,13 +48,11 @@ public class LanguageSwitcher implements MarsTool{
         buttonPanel.add(closeButton);
         test.add(menu);
         frame.setJMenuBar(test);
-        panel.add(panel, BorderLayout.SOUTH);
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setVisible(true);
         frame.setTitle(" Language Switcher");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // changed 12/12/09 DPS (was EXIT)
-        frame.setSize(200, 100); // TBD  SIZE
         frame.setVisible(true); // show();
     }
 }

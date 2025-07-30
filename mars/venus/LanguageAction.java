@@ -23,14 +23,16 @@ public class LanguageAction extends GuiAction{
    private JMenu dropdown;
    private EditTabbedPane editPane;
    private VenusUI g;
+   private JFrame window;
     public LanguageAction(String name, Icon icon, String descrip,
-                             Integer mnemonic, KeyStroke accel, VenusUI gui, CustomAssembly asm, ArrayList<CustomAssembly> asmList, JMenu dd, EditTabbedPane ep) {
+                             Integer mnemonic, KeyStroke accel, VenusUI gui, CustomAssembly asm, ArrayList<CustomAssembly> asmList, JMenu dd, EditTabbedPane ep, JFrame win) {
          super(name, icon, descrip, mnemonic, accel, gui);
          g = gui;
          assembly = asm;
          assemblyList = asmList;
          dropdown = dd;
          editPane = ep;
+         window = win;
       }
    		 
        public void actionPerformed(ActionEvent e) {
@@ -49,5 +51,6 @@ public class LanguageAction extends GuiAction{
          String currentFilename = editPane.getCurrentEditTab().getFilename();
          editPane.closeCurrentFile();
          editPane.openFile(new File(currentFilename));
+         window.toFront();
       }
 }
