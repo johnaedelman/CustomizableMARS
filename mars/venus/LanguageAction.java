@@ -51,6 +51,6 @@ public class LanguageAction extends GuiAction{
          String currentFilename = editPane.getCurrentEditTab().getFilename();
          editPane.closeCurrentFile();
          editPane.openFile(new File(currentFilename));
-         window.toFront();
+         window.setVisible(false);
       }
 }

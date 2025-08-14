@@ -24,6 +24,7 @@
 public class LanguageLoader{
     private static final String CUSTOM_LANG_DIRECTORY = "mars/mips/instructions/customlangs";
     private static final String JAR_EXTENSION = "jar";
+    private static final String EXAMPLE_FILE = "ExampleCustomLanguage";
 
     private static ArrayList finalInstructionList = new ArrayList<BasicInstruction>();
     public static ArrayList<CustomAssembly> assemblyList = new ArrayList<CustomAssembly>(){{
@@ -59,7 +60,10 @@ public class LanguageLoader{
                     }
                     String className = je.getName().replace(".class", "").replace("/", ".");
                     Class langClass = cl.loadClass(className);
-                    
+                    /* 
+                    if (className.endsWith(EXAMPLE_FILE))
+                        continue;
+                    */
                     // Do nothing if the class doesn't implement CustomAssembly
                     if (!CustomAssembly.class.isAssignableFrom(langClass)){
                         continue;

@@ -17,7 +17,6 @@ public class LanguageSwitcher implements MarsTool{
     
     public void action(){
         JFrame frame = new JFrame("Language Switcher");
-        JPanel panel = new JPanel();
         JMenu menu = new JMenu("Select Language");
         JMenuBar test = new JMenuBar();
         for (CustomAssembly c : LanguageLoader.assemblyList){
@@ -48,7 +47,6 @@ public class LanguageSwitcher implements MarsTool{
         buttonPanel.add(closeButton);
         test.add(menu);
         frame.setJMenuBar(test);
-        frame.getContentPane().add(panel);
         frame.pack();
         frame.setVisible(true);
         frame.setTitle(" Language Switcher");

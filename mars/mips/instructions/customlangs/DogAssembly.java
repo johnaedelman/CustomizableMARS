@@ -72,5 +72,20 @@ public class DogAssembly extends CustomAssembly{
                     }
                 }
             }));
+        instructionList.add(
+            new BasicInstruction("sprint target", 
+                "Dash on over to the statement at the target address.",
+                BasicInstructionFormat.J_FORMAT,
+            "000010 ffffffffffffffffffffffffff",
+            new SimulationCode()
+            {
+                public void simulate(ProgramStatement statement) throws ProcessingException
+                {
+                    int[] operands = statement.getOperands();
+                    Globals.instructionSet.processJump(
+                    ((RegisterFile.getProgramCounter() & 0xF0000000)
+                            | (operands[0] << 2)));            
+                }
+            }));
     }
 }
