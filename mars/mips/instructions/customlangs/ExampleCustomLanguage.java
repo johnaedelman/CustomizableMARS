@@ -7,8 +7,6 @@
     import java.util.*;
     import java.io.*;
     import mars.mips.instructions.*;
-
-    import mars.mips.instructions.CustomAssembly;
 /*
  * To create a custom language, you must extend the CustomAssembly abstract class and override its three methods.
  * It must also be part of the mars.mips.instructions.customlangs package.
@@ -98,9 +96,66 @@ public class ExampleCustomLanguage extends CustomAssembly{
                    public void simulate(ProgramStatement statement) throws ProcessingException
                   {
                      int[] operands = statement.getOperands();
+                     RegisterFile.updateRegister("$t1", operands[0]);
                      Globals.instructionSet.processJump(
                         ((RegisterFile.getProgramCounter() & 0xF0000000)
                                 | (operands[0] << 2)));            
+                  }
+               }));
+      instructionList.add(
+                new BasicInstruction("print $t1, label",
+            	 "example",
+                BasicInstructionFormat.I_BRANCH_FORMAT,
+                "110000 fffff 00000 ssssssssssssssss",
+                new SimulationCode()
+               {
+                   public void simulate(ProgramStatement statement) throws ProcessingException
+                  {
+                     int[] operands = statement.getOperands();
+                     
+                     
+                     char ch = 0;
+                     // Get the name of the label from the token list
+                     String label = statement.getOriginalTokenList().get(2).getValue();
+                     // Look up the label in the program symbol table to get its address
+                     int byteAddress = Globals.program.getLocalSymbolTable().getAddressLocalOrGlobal(label);
+                     RegisterFile.updateRegister(operands[0], byteAddress);
+
+                     try
+                        {
+                           ch = (char) Globals.memory.getByte(byteAddress);
+                                             // won't stop until NULL byte reached!
+                           while (ch != 0)
+                           {
+                              SystemIO.printString(new Character(ch).toString());
+                              byteAddress++;
+                              ch = (char) Globals.memory.getByte(byteAddress);
+                           }
+                        } 
+                           catch (AddressErrorException e)
+                           {
+                              throw new ProcessingException(statement, e);
+                           }
+                     
+                  }
+                           
+               }));
+         instructionList.add(
+                new BasicInstruction("bne $t1,$t2,label",
+                "Branch if not equal : Branch to statement at label's address if $t1 and $t2 are not equal",
+            	 BasicInstructionFormat.I_BRANCH_FORMAT,
+                "000100 fffff sssss tttttttttttttttt",
+                new SimulationCode()
+               {
+                   public void simulate(ProgramStatement statement) throws ProcessingException
+                  {
+                     int[] operands = statement.getOperands();
+                  
+                     if (RegisterFile.getValue(operands[0])
+                        != RegisterFile.getValue(operands[1]))
+                     {
+                        Globals.instructionSet.processBranch(operands[2]);
+                     }
                   }
                }));
     }

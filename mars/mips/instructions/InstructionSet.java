@@ -108,13 +108,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // 2025 RESEARCH INSTRUCTIONS START HERE
       LanguageLoader.mergeCustomInstructions(instructionList);
       // 2025 RESEARCH INSTRUCTIONS END HERE
-      
-      /* Here is where the parade begins.  Every instruction is added to the set here.*/
-      
-        // ////////////////////////////////////   BASIC INSTRUCTIONS START HERE ////////////////////////////////
-
-        ////////////// READ PSEUDO-INSTRUCTION SPECS FROM DATA FILE AND ADD //////////////////////
-            
 
         ////////////// GET AND CREATE LIST OF SYSCALL FUNCTION OBJECTS ////////////////////
          syscallLoader = new SyscallLoader();

@@ -1,15 +1,12 @@
-li $t0, 3
+.data
+str1: .asciiz "testing the print...\n"
+str2: .asciiz "second string !!!\n"
+.text
+
+addi $t5, $zero, 5
 LOOP:
+addi $t0, $t0, 1
+print $t1, str1
+print $t2, str2
+bne $t0, $t5, LOOP
 
-move $t1, $v0
-
-li $v0, 1
-move $a0, $t1
-syscall
-li $a0, 10
-li $v0, 11
-syscall
-
-move $v0, $t1
-addi $v0, $v0, 1
-bne $v0, 5, LOOP
