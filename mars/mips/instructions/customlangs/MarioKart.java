@@ -27,10 +27,10 @@
  * Drop it into the customlangs folder and it will appear under the Language Switcher tool.
  * 
  */
-public class ExampleCustomLanguage extends CustomAssembly{
+public class MarioKart extends CustomAssembly{
     @Override
     public String getName(){
-        return "Mario Kart";
+        return "Example Custom Language";
     }
 
     @Override
@@ -111,7 +111,9 @@ public class ExampleCustomLanguage extends CustomAssembly{
                {
                    public void simulate(ProgramStatement statement) throws ProcessingException
                   {
-                     int[] operands = statement.getOperands();             
+                     int[] operands = statement.getOperands();
+                     
+                     
                      char ch = 0;
                      // Get the name of the label from the token list
                      String label = statement.getOriginalTokenList().get(2).getValue();
