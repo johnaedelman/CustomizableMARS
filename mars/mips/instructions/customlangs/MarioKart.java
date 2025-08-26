@@ -30,7 +30,7 @@
 public class MarioKart extends CustomAssembly{
     @Override
     public String getName(){
-        return "Example Custom Language";
+        return "Mario Kart Assembly";
     }
 
     @Override
