@@ -1,13 +1,10 @@
     package mars.mips.instructions.customlangs;
     import mars.simulator.*;
     import mars.mips.hardware.*;
-    import mars.mips.instructions.syscalls.*;
     import mars.*;
     import mars.util.*;
-    import java.util.*;
-    import java.io.*;
     import mars.mips.instructions.*;
-/*
+/**
  * To create a custom language, you must extend the CustomAssembly abstract class and override its three methods.
  * It must also be part of the mars.mips.instructions.customlangs package.
  * 
@@ -25,7 +22,7 @@
  * 
  * This will leave you with a working JAR file in the MARS directory containing your custom language. 
  * Drop it into the customlangs folder and it will appear under the Language Switcher tool.
- * 
+ * @see CustomAssembly
  */
 public class ExampleCustomLanguage extends CustomAssembly{
     @Override

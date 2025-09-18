@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MARS LE</title>
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,700"; rel="stylesheet" type="text/css">
+        <style>
+            @keyframes fadeIn{
+                from {opacity: 0}
+                to {opacity: 1}
+            }
+            body{
+                background-color: #eeeeee;
+            }
+            #main-container{
+                margin-left: 5vw;
+                margin-right: 5vw;
+                
+            }
+            .wrapper{
+                background-color: #fcfcfc;
+                margin-top: 3vh;
+                margin-bottom: 3vh;
+                animation-name: fadeIn;
+                animation-duration: 2s;
+                padding-top: 3vh;
+                padding-bottom: 3vh;
+                padding-left: 1.5vw;
+                padding-right: 1.5vw;
+                margin: auto;
+                text-align: center;
+                border-radius: 10px;
+            }
+            #header-wrapper{
+                width: 40vw;
+                font-family: "Raleway", Arial;
+                font-weight: 400;
+            }
+            h1{
+                margin-top: 3vh;
+                margin-bottom: 3vh;
+                font-size: 50px;
+                font-weight: bold;
+                color: #380000;
+            }
+            #subheader{
+                color: #707070;
+                font-size: 28px;
+            }
+            #button-wrapper{
+                margin-top: 5vh;
+                width: 22vw;
+                font-family: "Raleway", Arial;
+                font-weight: 400;
+                display: flex;
+                flex-direction: row;
+            }
+            .btn{
+                vertical-align: middle;
+                width: 8vw;
+                height: 5vh;
+                margin-left: 0.5vw;
+                margin-right: 0.5vw;
+                border: 1px solid #c7c7c7;
+                font-size:18px;
+                color: #f1f1f1;
+                border-radius: 5px;
+                padding-left: 1vw;
+                padding-right: 1vw;
+                padding-top: 0.5vh;
+                padding-bottom: 0.5vh;
+                font-weight: bold;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-github{
+                background-color: #720000;
+                width: 20vw;
+                margin-left: 0.5vw;
+                margin-right: 0.5vw;
+            }
+            .btn-second{
+                background-color: #000000;
+            }
+            .example-wrapper{
+                margin-top: 5vh;
+                width: 40vw;
+                font-family: "Raleway", Arial;
+                font-weight: 400;
+                text-align: left;
+                line-height: 24px;
+            }
+            .code-example{
+                background-color: #c4c4c4;
+                border: 2px solid #000000;
+                border-radius: 5px;
+                font-family: 'Courier New', Courier;
+                font-weight: normal;
+                padding-left: 1vw;
+                padding-right: 1vw;
+                padding-bottom: 1vh;
+                padding-top: 1vh;
+            }
+            .line{
+                margin-top: 4px;
+                margin-bottom: 4px;
+                word-wrap: break-word;
+            }
+            .ind-1{
+                padding-left: 2vw;
+            }
+            .ind-2{
+                padding-left: 4vw;
+            }
+            .ind-3{
+                padding-left: 6vw;
+            }
+            .ind-4{
+                padding-left: 8vw;
+            }
+            .filename-header{
+                font-family: Arial;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main-container">
+            <div class="wrapper" id="header-wrapper">
+                <h1>MARS LE</h1>
+                <p id="subheader">An extension to the MARS program allowing you to define your own custom assembly languages</p>
+            </div>
+            <div class="wrapper" id="button-wrapper">
+                <a href="https://github.com/johnaedelman/CustomizableMARS" type="button" class="btn btn-github">View on GitHub</a>
+            </div>
+            <div class="wrapper example-wrapper">
+                <p class="filename-header">TestAssembly.java</p>
+                <div class = "code-example">
+                    <p class="line">package mars.mips.instructions.customlangs;</p>
+                    <p class="line">import mars.simulator.*;</p>
+                    <p class="line">import mars.mips.hardware.*;</p>
+                    <p class="line">import mars.*;</p>
+                    <p class="line">import mars.util.*;</p>
+                    <p class="line">import mars.mips.instructions.*;</p>
+                </div>
+                <p>These are the necessary imports to create a CustomAssembly within the CustomizableMARS/mars/mips/instructions/customlangs folder. Next, we must override the methods of the CustomAssembly abstract class:</p>
+                <div class="code-example">
+                    <p class="line">public class TestAssembly extends CustomAssembly{</p>
+                    <p class="line ind-1">@Override</p>
+                    <p class="line ind-1">public String getName(){</p>
+                    <p class="line ind-2">return "Test Assembly";</p>
+                    <p class="line ind-1">}</p>
+                    <p class="line ind-1">@Override</p>
+                    <p class="line ind-1">public String getDescription(){</p>
+                    <p class="line ind-2">return "An example to demonstrate the basics of creating a custom language.";</p>
+                    <p class="line ind-1">}</p>
+                </div>
+                <p>Now, we are only missing the most important function call: populate(). Let's use populate() to create a simple instruction to add two registers and store the result into a third register!</p>
+                <div class="code-example">
+                    <p class="line">@Override</p>
+                    <p class="line">protected void populate(){</p>
+                    <p class="line ind-1">instructionList.add(</p>
+                    <p class="line ind-2">new BasicInstruction("add $t1,$t2,$t3",</p>
+                    <p class="line ind-2">"This is the description of my add instruction!",</p>
+                    <p class="line ind-2">BasicInstructionFormat.R_FORMAT,</p>
+                    <p class="line ind-2">"000000 sssss ttttt fffff 00000 100000",</p>
+                    <p class="line ind-2">new SimulationCode(){</p>
+                    <p class="line ind-3">public void simulate(ProgramStatement statement) throws ProcessingException{</p>
+                    <p class="line ind-4">int[] operands = statement.getOperands();</p>
+                    <p class="line ind-4">int add1 = RegisterFile.getValue(operands[1]);</p>
+                    <p class="line ind-4">int add2 = RegisterFile.getValue(operands[2]);</p>
+                    <p class="line ind-4">int sum = add1 + add2;</p>
+                    <p class="line ind-4">RegisterFile.updateRegister(operands[0], sum);</p>
+                    <p class="line ind-3">}</p>
+                    <p class="line ind-2">})</p>
+                    <p class="line ind-1">);</p>
+                    <p class="line">}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

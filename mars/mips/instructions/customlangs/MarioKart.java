@@ -1,11 +1,8 @@
     package mars.mips.instructions.customlangs;
     import mars.simulator.*;
     import mars.mips.hardware.*;
-    import mars.mips.instructions.syscalls.*;
     import mars.*;
     import mars.util.*;
-    import java.util.*;
-    import java.io.*;
     import mars.mips.instructions.*;
 /*
  * To create a custom language, you must extend the CustomAssembly abstract class and override its three methods.

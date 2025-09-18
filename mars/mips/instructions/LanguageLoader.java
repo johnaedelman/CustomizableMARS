@@ -1,7 +1,4 @@
     package mars.mips.instructions;
-    import mars.simulator.*;
-    import mars.mips.hardware.*;
-    import mars.mips.instructions.syscalls.*;
     import mars.*;
     import mars.util.*;
     import java.util.*;
@@ -11,9 +8,6 @@
     import java.lang.reflect.Constructor;
     import java.net.URLClassLoader;
     import java.net.URL;
-    import mars.mips.instructions.MipsAssembly;
-    import mars.mips.instructions.CustomAssembly;
-
     
 /**
  * Handles all user-defined instruction sets. Loads JAR files containing classes which extend CustomAssembly from the mars/mips/instructions/customlangs directory
@@ -26,13 +20,13 @@ public class LanguageLoader{
     private static final String JAR_EXTENSION = "jar";
     private static final String EXAMPLE_FILE = "ExampleCustomLanguage";
 
-    private static ArrayList finalInstructionList = new ArrayList<BasicInstruction>();
+    private static ArrayList<BasicInstruction> finalInstructionList = new ArrayList<BasicInstruction>();
     public static ArrayList<CustomAssembly> assemblyList = new ArrayList<CustomAssembly>(){{
         MipsAssembly m = new MipsAssembly();
         add(m);
 
         ArrayList<String> langCandidates = FilenameFinder.getFilenameList(m.getClass().getClassLoader(), CUSTOM_LANG_DIRECTORY, JAR_EXTENSION);
-        HashSet<String> languages = new HashSet();
+        HashSet<String> languages = new HashSet<String>();
 
         for (String file : langCandidates){
             // Ensure duplicates are not loaded
@@ -72,6 +66,7 @@ public class LanguageLoader{
                     Constructor<CustomAssembly> c = langClass.getConstructor();
                     add(c.newInstance());
                 }
+                jarFile.close();
             } catch(Exception e){
                 System.out.println("Error instantiating CustomAssembly from file " + file + ": " + e);
             }
@@ -82,7 +77,7 @@ public class LanguageLoader{
     * Merges all enabled custom instruction sets into the main instruction set that the simulator reads from.
     * @param instrList The global instruction list.
     */
-    public static void mergeCustomInstructions(ArrayList instrList){
+    public static void mergeCustomInstructions(ArrayList<BasicInstruction> instrList){
         boolean pseudo = false;
         finalInstructionList.clear();
         for (CustomAssembly c : assemblyList){

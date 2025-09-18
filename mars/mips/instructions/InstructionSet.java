@@ -3,18 +3,9 @@
    import mars.mips.hardware.*;
    import mars.mips.instructions.syscalls.*;
    import mars.*;
-   import mars.util.*;
    import java.util.*;
    import java.io.*;
-   import java.lang.Math;
-   import mars.mips.instructions.LanguageLoader;
-	import mars.venus.VenusUI;
 
-   import java.awt.*;
-import java.awt.event.*;
-
-import javax.security.auth.callback.LanguageCallback;
-import javax.swing.*;
 	/*
 Copyright (c) 2003-2013,  Pete Sanderson and Kenneth Vollmar
 
@@ -105,9 +96,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       frame.getContentPane().add(debugLabel, BorderLayout.SOUTH);
       frame.pack();
       */
-      // 2025 RESEARCH INSTRUCTIONS START HERE
+
+      // 2025 RESEARCH: INSTRUCTIONS MOVED TO MipsAssembly.java
+      // LanguageLoader now handles instructions, both for MIPS and custom-defined languages
       LanguageLoader.mergeCustomInstructions(instructionList);
-      // 2025 RESEARCH INSTRUCTIONS END HERE
 
         ////////////// GET AND CREATE LIST OF SYSCALL FUNCTION OBJECTS ////////////////////
          syscallLoader = new SyscallLoader();

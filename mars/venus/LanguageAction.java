@@ -1,18 +1,11 @@
    package mars.venus;
-   import mars.simulator.*;
-import mars.venus.GuiAction;
-import mars.venus.VenusUI;
-import mars.*;
+   import mars.*;
    import java.util.*;
    import java.awt.*;
    import java.awt.event.*;
    import javax.swing.*;
    import java.io.*;
    import mars.mips.instructions.CustomAssembly;
-   import mars.mips.instructions.InstructionSet;
-   import mars.venus.editors.jeditsyntax.tokenmarker.MIPSTokenMarker;
-   import mars.venus.editors.jeditsyntax.TextAreaPainter;
-
 	
 /**
  * Action class for the Instruction Set dropdown to toggle instruction sets on and off.

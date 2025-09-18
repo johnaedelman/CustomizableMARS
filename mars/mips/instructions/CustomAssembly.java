@@ -1,14 +1,8 @@
    package mars.mips.instructions;
-   import mars.simulator.*;
-   import mars.mips.hardware.*;
-   import mars.mips.instructions.syscalls.*;
-   import mars.*;
-   import mars.util.*;
    import java.util.*;
-   import java.io.*;
 
 /**
- * Abstract class defining the template for a custom instruction set which works with LanguageLoader.
+ * Abstract class defining the template for a custom assembly language which works with LanguageLoader.
  * All three abstract methods within the class must be overridden in order to create a valid CustomAssembly.
  * @see getName
  * @see getDescription
@@ -16,12 +10,12 @@
  */
 public abstract class CustomAssembly{
    /**
-    * @return The instruction set name which will be listed on the GUI dropdown.
+    * @return The language name which will be listed on the GUI dropdown.
     */
    public abstract String getName();
 
    /**
-    * @return The instruction set description which will be listed on the GUI dropdown.
+    * @return The language description which will be listed on the GUI dropdown.
     */
    public abstract String getDescription();
 
@@ -34,7 +28,7 @@ public abstract class CustomAssembly{
     * @see populate
     * @see LanguageLoader
     */
-   public void addCustomInstructions(ArrayList instrList){
+   public void addCustomInstructions(ArrayList<BasicInstruction> instrList){
       instructionList.clear();
       this.populate();
       instrList.addAll(instructionList);

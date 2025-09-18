@@ -1,31 +1,23 @@
     package mars.mips.instructions.customlangs;
-    import mars.simulator.*;
     import mars.mips.hardware.*;
-    import mars.mips.instructions.syscalls.*;
     import mars.*;
     import mars.util.*;
-    import java.util.*;
-    import java.io.*;
     import mars.mips.instructions.*;
 
 /*
  * To create a custom language, you must extend the CustomAssembly abstract class and override its three methods.
- * It must also be part of the mars.mips.instructions.customlangs package.
+ * It must also be part of the mars.mips.instructions.customlangs package, and should be placed in the mars/mips/instructions/customlangs folder.
  * 
  * The populate() method is where the magic happens - you must specify your instructions to be added here.
  * For more examples regarding the instruction format, you can view the implementation of the MIPS instructions in mars/mips/instructions/MipsAssembly.java.
  * 
  * Instructions to get your custom language into MARS:
- * Navigate to the MARS folder in your command terminal and build a JAR file from your custom assembly file.
- * Ensure that the internal folder structure is correct, or the JAR will be broken and MARS won't recognize it.
- * To do this on Windows, input the following commands after navigating to .../MARS/:
+ * Navigate to the CustomizabLeMARS folder in either File Explorer or your command terminal and run the BuildCustomLangJar.bat file.
+ * It will prompt you for the filename of your CustomAssembly file. If you created a file called SampleCustomLang.java, then you would
+ * run the .bat file and type in "SampleCustomLang" or "SampleCustomLang.java". The file will then automatically build a JAR from your .java file
+ * and place it into the /customlangs folder. You will be notified of any errors or compilation failures in the output of the .bat file.
  * 
- * javac -d out mars/mips/instructions/customlangs/{NAME OF YOUR LANGUAGE}.java
- * jar cf {NAME OF YOUR LANGUAGE}.jar -C out .
- * rmdir /S /Q out
- * 
- * This will leave you with a working JAR file in the MARS directory containing your custom language. 
- * Drop it into the customlangs folder and it will appear under the Language Switcher tool.
+ * You should now be able to relaunch MARS and view your custom language.
  * 
  */
 public class MIPSPlusPlus extends CustomAssembly{
