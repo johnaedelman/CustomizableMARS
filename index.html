@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>MARS LE</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,700"; rel="stylesheet" type="text/css">
+        <link rel="icon" type="image/x-icon" href="images/mars.ico">
         <style>
             @keyframes fadeIn{
                 from {opacity: 0}
@@ -32,7 +33,7 @@
                 border-radius: 10px;
             }
             #header-wrapper{
-                width: 40vw;
+                max-width: 768px;
                 font-family: "Raleway", Arial;
                 font-weight: 400;
             }
@@ -47,9 +48,9 @@
                 color: #707070;
                 font-size: 28px;
             }
-            #button-wrapper{
+            .button-wrapper{
                 margin-top: 5vh;
-                width: 22vw;
+                max-width: 422px;
                 font-family: "Raleway", Arial;
                 font-weight: 400;
                 display: flex;
@@ -77,16 +78,21 @@
             }
             .btn-github{
                 background-color: #720000;
-                width: 20vw;
+                width: 100%;
+                max-width: 384px;
                 margin-left: 0.5vw;
                 margin-right: 0.5vw;
             }
             .btn-second{
                 background-color: #000000;
+                width: 100%;
+                max-width: 384px;
+                margin-left: 0.5vw;
+                margin-right: 0.5vw;
             }
             .example-wrapper{
                 margin-top: 5vh;
-                width: 40vw;
+                max-width: 768px;
                 font-family: "Raleway", Arial;
                 font-weight: 400;
                 text-align: left;
@@ -125,6 +131,12 @@
                 font-size: 18px;
                 font-weight: bold;
             }
+            .example-image{
+                margin: auto;
+                display: block;
+                margin-top: 2vh;
+                margin-bottom: 2vh;
+            }
         </style>
     </head>
     <body>
@@ -133,7 +145,7 @@
                 <h1>MARS LE</h1>
                 <p id="subheader">An extension to the MARS program allowing you to define your own custom assembly languages</p>
             </div>
-            <div class="wrapper" id="button-wrapper">
+            <div class="wrapper button-wrapper">
                 <a href="https://github.com/johnaedelman/CustomizableMARS" type="button" class="btn btn-github">View on GitHub</a>
             </div>
             <div class="wrapper example-wrapper">
@@ -179,6 +191,16 @@
                     <p class="line ind-1">);</p>
                     <p class="line">}</p>
                 </div>
+                <p>Now that our .java file has been created inside the correct folder, there's only one step left before we can use our custom language. On Windows, navigate back to the root directory of CustomizableMARS and run "BuildCustomLangJar.bat" using the name of our custom language file:</p>
+                <img src="images/batchex1.png" class="example-image" alt="Example showing successful input from the user to create a new .jar file from TestAssembly.java">
+                <p>Now, if we boot up MARS, we can see our custom language, select it, and use its instructions!</p>
+                <img src="images/uiex1.png" class="example-image">
+                <img src="images/uiex2.png" class="example-image">
+                <img src="images/uiex3.png" class="example-image">
+            </div>
+            
+            <div class="wrapper button-wrapper">
+                <a href="https://cs.slu.edu/~fritts/CSCI140_F12/schedule/MARS%20Tutorial.pdf" type="button" class="btn btn-second">Learn more</a>
             </div>
         </div>
     </body>
