@@ -27,7 +27,7 @@
 public class ExampleCustomLanguage extends CustomAssembly{
     @Override
     public String getName(){
-        return "Mario Kart";
+        return "Example Custom Language";
     }
 
     @Override
