@@ -1,13 +1,8 @@
     package mars.mips.instructions;
     import mars.simulator.*;
     import mars.mips.hardware.*;
-    import mars.mips.instructions.syscalls.*;
     import mars.*;
     import mars.util.*;
-    import java.util.*;
-    import java.io.*;
-    import mars.mips.instructions.CustomAssembly;
-    import mars.mips.instructions.InstructionSet;
 
 public class MipsAssembly extends CustomAssembly{
     

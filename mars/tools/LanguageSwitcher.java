@@ -1,14 +1,10 @@
    package mars.tools;
    import mars.*;
-   import mars.mips.hardware.*;
-import mars.tools.MarsTool;
-import mars.venus.*;
+   import mars.venus.*;
    import java.awt.*;
    import java.awt.event.*;
    import javax.swing.*;
-   import java.util.*;
    import mars.mips.instructions.*;
-   import mars.venus.*;
 
 public class LanguageSwitcher implements MarsTool{
     public String getName(){
